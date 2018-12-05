@@ -1,0 +1,15 @@
+version: 5
+
+defaults:
+  datadir: data
+  data_hash: yaml_data
+
+hierarchy:
+  - name: "Per-node data"
+    path: "%{environment}/nodes/%{facts.hostname}.yaml"
+
+  - name: "Per-environment defaults"
+    path: "%{environment}/%{environment}.yaml"
+
+  - name: "Common data"
+    path: "common.yaml"
