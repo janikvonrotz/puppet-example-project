@@ -1,11 +1,25 @@
 class nginx (
-	$port,
-	$host,
-	$welcome_message,
+	Integer $port,
+	String $host,
+	String $welcome_message,
 ) {
-    file {
-        "/tmp/index.html":
-            ensure => file,
-            source => "puppet:///modules/nginx/index.html",
-    }
+
+	package { "nginx":
+		ensure => installed,
+	}
+
+	service { "nginx":
+		ensure => running,
+	}
+
+	file { "/usr/share/nginx/html/index.html":
+      		ensure  => present,
+		content => epp("nginx/index.html.epp"),
+	}
+
+	file { "/etc/nginx/nginx.conf":
+		ensure  => present,
+		content => epp("nginx/nginx.conf.epp"),
+		notify => Service['nginx'],
+  	}
 }

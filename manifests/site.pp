@@ -1,1 +1,3 @@
-include nginx
+node default {
+  include role::webserver
+}

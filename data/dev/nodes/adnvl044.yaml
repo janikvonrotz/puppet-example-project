@@ -1,1 +1,1 @@
-nginx::welcome_message: "hello world"
+profile::nginx::welcome_message: "how are you?"

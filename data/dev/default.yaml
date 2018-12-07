@@ -1,1 +1,1 @@
-nginx::host: dev.localhost
+profile::nginx::host: default_server
